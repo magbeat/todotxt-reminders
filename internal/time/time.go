@@ -1,6 +1,7 @@
 package time
 
 import (
+	"fmt"
 	"log"
 	"time"
 )
@@ -9,6 +10,8 @@ func NeedsNotification(reminderString string) (result bool, err error) {
 	now := time.Now()
 	zone, _ := now.Zone()
 	reminder, err := time.Parse("2006-01-02T15:05 MST", reminderString + " " + zone)
+	fmt.Printf("Now     : %v", now)
+	fmt.Printf("Reminder: %v", reminder)
 	if err != nil {
 		log.Printf("Could not parse date %v\n", reminderString)
 	}

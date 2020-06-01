@@ -1,12 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"github.com/JamesClonk/go-todotxt"
 	"github.com/magbeat/todotxt-reminders/internal/pushover"
 	time2 "github.com/magbeat/todotxt-reminders/internal/time"
 	"log"
 	"os"
-	"time"
 )
 
 func main() {
@@ -24,15 +24,14 @@ func main() {
 		log.Fatal(err)
 	}
 
+	fmt.Printf("Found %v tasks\n", len(taskList))
+	tasksWithReminders := 0
+	notificationsSent := 0
 	for _, task := range taskList {
 		reminder, reminderSet := task.AdditionalTags["reminder"]
 		if reminderSet {
-			t, err := time.Parse("2006-01-02T15:05", reminder)
-			if err != nil {
-				log.Println("Could not parse date %v", reminder)
-			}
-
-			needsNotification, err := time2.NeedsNotification(t)
+			tasksWithReminders++
+			needsNotification, err := time2.NeedsNotification(reminder)
 			if err != nil {
 				log.Println(err)
 			}
@@ -40,6 +39,7 @@ func main() {
 			if needsNotification {
 				err = pushover.SendNofification(pushoverToken, pushoverDevice, task)
 				if err == nil {
+					notificationsSent++
 					delete(task.AdditionalTags, "reminder")
 					err = taskList.WriteToFilename(todoListFilename)
 					if err != nil {
@@ -49,4 +49,7 @@ func main() {
 			}
 		}
 	}
+
+	fmt.Printf("Found %v tasks with reminders\n", tasksWithReminders)
+	fmt.Printf("Sent %v notifications\n", notificationsSent)
 }

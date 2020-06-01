@@ -13,7 +13,7 @@ func main() {
 	todotxt.IgnoreComments = false
 
 	if len(os.Args) != 4 {
-		log.Fatal("Needs exactly two arguments: the todo.txt path and the time span in minutes")
+		log.Fatal("Needs exactly 3 arguments: the todo.txt file path, the pushover app token and the pushover device token")
 	}
 	todoListFilename := os.Args[1]
 	pushoverToken := os.Args[2]

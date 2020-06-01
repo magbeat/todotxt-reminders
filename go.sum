@@ -1,0 +1,4 @@
+github.com/JamesClonk/go-todotxt v0.0.0-20180101102949-97a991fa2677 h1:NmzwxKVMDQg8j6k9wsd7rCpAexCm2nH5BlzVg+asqaM=
+github.com/JamesClonk/go-todotxt v0.0.0-20180101102949-97a991fa2677/go.mod h1:0y/R/712AtSbhYQqr07rPir3/HwkXtz5JDybPBV6fy8=
+github.com/gregdel/pushover v0.0.0-20200416074932-c8ad547caed4 h1:QZVozMeLCqyMOOhA+OuqQdNXkyu4uUQEu4+mPBB5pPQ=
+github.com/gregdel/pushover v0.0.0-20200416074932-c8ad547caed4/go.mod h1:EcaO66Nn1StkpEm1iKtBTV3d2A16SoMsVER1PthX7to=
